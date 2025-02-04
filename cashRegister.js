@@ -1,4 +1,4 @@
-let price = 3.62;
+let price = 3.26;
 let cid = [
   ['PENNY', 1.01],
   ['NICKEL', 2.05],
@@ -23,15 +23,43 @@ const power = {
       "TWENTY":20,
       "ONE HUNDRED":100}
 
-const returnChange = (cashPaid) => {
+const changeStatus = (cashPaid) => {
+  const returnChange = (cashPaid) => {
+    let remainder = Number((cashPaid - price).toFixed(2));
 
-    if (cashPaid < price ){
-        console.log("Customer does not have enough money to purchase the item")
-
+    for (let cash of cid) {
+      if (remainder % power[cash[0]] === 0 && cash[1] >= remainder) {
+        cash[1] = Number((cash[1] - remainder).toFixed(2));
+        console.log("success");
+        return;
+      }
     }
 
-    else if(cashPaid === price){
-       console.log("No change due - customer paid with exact cash")
+    for (let i = cid.length - 1; i >= 0; i--) {
+      if (power[cid[i][0]] < remainder && cid[i][1] > 0) {
+        cid[i][1] = Number((cid[i][1] - power[cid[i][0]]).toFixed(2));
+        return returnChange(Number((cashPaid - power[cid[i][0]]).toFixed(2)));
+      }
     }
 
-}
+    console.log("Insufficient funds");
+    return;
+  };
+
+  if (cashPaid < price) {
+    console.log("Customer does not have enough money to purchase the item");
+  } else if (cashPaid === price) {
+    console.log("No change due - customer paid with exact cash");
+  } else {
+    returnChange(cashPaid);
+  }
+};  
+    
+    
+
+changeStatus(-55)
+console.log(cid)
+
+
+
+
