@@ -56,6 +56,15 @@ const changeStatus = (cashPaid) => {
 };  
     
     
+const priceElement = document.getElementById("price");
+priceElement.innerText = price;
+const listOfNotes = document.getElementById("list-of-notes")
+
+for ( let i = 0; i< cid.length; i++){
+    listOfNotes.innerHTML += `<p id=${cid[i][0]}>${cid[i][0]}: $${cid[i][1]}</p>`
+}
+
+
 
 changeStatus(-55)
 console.log(cid)

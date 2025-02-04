@@ -15,7 +15,7 @@
         <h1>Cash Register Project</h1>
         <div class="status" id="status"></div>
         <div class="cash-paid" id="cash-paid">
-            <label>Enter cash from customer:</label>
+            <label for="cash-value">Enter cash from customer:</label>
             <input id="cash-value" class="cash-value" type="number">
             <button class="purchase" id="purchase">Purchase</button>
         </div>
@@ -23,24 +23,15 @@
         <div class="cashier-machine" id="cashier-machine">
             <div class="top-part">
                 <div>
-                    <p>Total:$<span class="price" id="price"></span></p>
+                    <p>Total: $<span class="price" id="price"></span></p>
                 </div>
             </div>
             <div class="connecter"></div>
             <div class="container" id="container">
                 <div class="design-box"></div>
-                <div class="list-of-notes">
+                <div class="list-of-notes" id="list-of-notes">
                     <p><strong>Change in drawer:</strong></p>
-                    <p>Pennies: $</p>
-                    <p>Nickels: $</p>
-                    <p>Dimes: $</p>
-                    <p>Quarters: $</p>
-                    <p>Ones: $</p>
-                    <p>Fives: $</p>
-                    <p>Tens: $</p>
-                    <p>Twenties: $</p>
-                    <p>Hundreds: $</p>
-
+                    
                 </div>
 
             </div>
@@ -59,6 +50,7 @@
 
 
     </main>
+    <script src="cashRegister.js"></script>
 </body>
 
 </html>
