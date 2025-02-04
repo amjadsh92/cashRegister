@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="cashRegister.css">
-        <title>Cash Register APP</title>
-    </head>
 
-    <body>
-        <main>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cashRegister.css">
+    <title>Cash Register APP</title>
+</head>
 
-            <img src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="freeCodeCamp Logo" />
-            <h1>Cash Register Project</h1>
-            <div class="status" id="status"></div>
-            <div class="cash-paid" id="cash-paid">
-                <label>Enter cash from customer:</label>
-                <input id="cash-value" class= "cash-value" type="number">
-                <button class="purchase" id="purchase">Purchase</button>
+<body>
+    <main>
+
+        <img src="https://cdn.freecodecamp.org/platform/universal/fcc_primary.svg" alt="freeCodeCamp Logo" />
+        <h1>Cash Register Project</h1>
+        <div class="status" id="status"></div>
+        <div class="cash-paid" id="cash-paid">
+            <label>Enter cash from customer:</label>
+            <input id="cash-value" class="cash-value" type="number">
+            <button class="purchase" id="purchase">Purchase</button>
+        </div>
+
+        <div class="cashier-machine" id="cashier-machine">
+            <div class="top-part">
+                <div>
+                    <p>Total:$<span class="price" id="price"></span></p>
+                </div>
             </div>
-           
+            <div class="connecter"></div>
+            <div class="container" id="container">
+                <div class="design-box"></div>
+                <div class="list-of-notes">
+                    <p><strong>Change in drawer:</strong></p>
+                    <p>Pennies: $</p>
+                    <p>Nickels: $</p>
+                    <p>Dimes: $</p>
+                    <p>Quarters: $</p>
+                    <p>Ones: $</p>
+                    <p>Fives: $</p>
+                    <p>Tens: $</p>
+                    <p>Twenties: $</p>
+                    <p>Hundreds: $</p>
+
+                </div>
+
+            </div>
+
+            <div class="bottom-part">
+                <div class="circle"></div>
+
+            </div>
+
+
+        </div>
 
 
 
 
 
-        </main>
-    </body>
+
+    </main>
+</body>
+
 </html>
