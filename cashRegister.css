@@ -189,3 +189,15 @@
 
 
 }
+
+.output{
+    width:250px;
+    margin:10px auto 0px auto;
+}
+
+.output p{
+    color:white;
+    text-align:center;
+    margin-top:10px;;
+    font-size:18px;
+}

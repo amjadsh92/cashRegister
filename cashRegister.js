@@ -24,50 +24,92 @@ const power = {
       "ONE HUNDRED":100}
 
 const changeStatus = (cashPaid) => {
+  
+
+  let amountPaid={'PENNY':0, 'NICKEL':0,'DIME':0, 'QUARTER':0, 'ONE':0,  "FIVE":0, 'TEN':0,'TWENTY':0,"ONE HUNDRED":0 }
+  let stat = "";
+  let result = {stat, amountPaid};
   const returnChange = (cashPaid) => {
     let remainder = Number((cashPaid - price).toFixed(2));
 
     for (let cash of cid) {
       if (remainder % power[cash[0]] === 0 && cash[1] >= remainder) {
         cash[1] = Number((cash[1] - remainder).toFixed(2));
-        console.log("success");
-        return;
+        amountPaid[cash[0]] += remainder
+        result.stat = "OPEN"
+
+        
+        return result;
       }
     }
 
     for (let i = cid.length - 1; i >= 0; i--) {
       if (power[cid[i][0]] < remainder && cid[i][1] > 0) {
         cid[i][1] = Number((cid[i][1] - power[cid[i][0]]).toFixed(2));
+        amountPaid[cid[i][0]] += power[cid[i][0]]
         return returnChange(Number((cashPaid - power[cid[i][0]]).toFixed(2)));
       }
     }
 
-    console.log("Insufficient funds");
-    return;
+    result.stat =  "Insufficient_funds"
+    return result;
   };
 
-  if (cashPaid < price) {
-    console.log("Customer does not have enough money to purchase the item");
-  } else if (cashPaid === price) {
-    console.log("No change due - customer paid with exact cash");
+ 
+  if (cashPaid === price) {
+    return "No change due - customer paid with exact cash";
   } else {
-    returnChange(cashPaid);
+    return returnChange(cashPaid);
   }
 };  
     
     
 const priceElement = document.getElementById("price");
 priceElement.innerText = price;
+const output  = document.getElementById("output")
 const listOfNotes = document.getElementById("list-of-notes")
+const cash = document.getElementById("cash-value")
+const purchaseButton = document.getElementById("purchase")
+
 
 for ( let i = 0; i< cid.length; i++){
     listOfNotes.innerHTML += `<p id=${cid[i][0]}>${cid[i][0]}: $${cid[i][1]}</p>`
 }
 
 
+purchaseButton.addEventListener("click", () =>{
+    debugger;
+    let result = changeStatus(cash.value);
+    output.innerHTML = "";
+    if(result){
+      const  {stat, amountPaid} = result;
+      output.innerHTML +=`<p >STATUS: ${stat}</p>`;
 
-changeStatus(-55)
-console.log(cid)
+      for ( let note in amountPaid){
+
+        if(amountPaid[note]){
+            output.innerHTML += `<p> ${note}: $${amountPaid[note]}</p>`
+        }
+
+
+      }
+      listOfNotes.innerHTML = `<p><strong>Change in drawer:</strong></p>`
+      for ( let i = 0; i< cid.length; i++){
+        listOfNotes.innerHTML += `<p id=${cid[i][0]}>${cid[i][0]}: $${cid[i][1]}</p>`
+    }
+    
+    }
+    else{
+        alert("Customer does not have enough money to purchase the item")
+    }})
+
+
+
+
+
+
+
+
 
 
 
