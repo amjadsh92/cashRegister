@@ -25,33 +25,35 @@ const power = {
 
 const changeStatus = (cashPaid) => {
   
-
+  let cid_test= cid.map(item => [...item]);
   let amountPaid={'PENNY':0, 'NICKEL':0,'DIME':0, 'QUARTER':0, 'ONE':0,  "FIVE":0, 'TEN':0,'TWENTY':0,"ONE HUNDRED":0 }
   let stat = "";
   let result = {stat, amountPaid};
   const returnChange = (cashPaid) => {
     let remainder = Number((cashPaid - price).toFixed(2));
 
-    for (let cash of cid) {
+    for (let cash of cid_test) {
       if (remainder % power[cash[0]] === 0 && cash[1] >= remainder) {
         cash[1] = Number((cash[1] - remainder).toFixed(2));
         amountPaid[cash[0]] += remainder
         result.stat = "OPEN"
-
+        cid = [...cid_test];
         
         return result;
       }
     }
 
-    for (let i = cid.length - 1; i >= 0; i--) {
-      if (power[cid[i][0]] < remainder && cid[i][1] > 0) {
-        cid[i][1] = Number((cid[i][1] - power[cid[i][0]]).toFixed(2));
-        amountPaid[cid[i][0]] += power[cid[i][0]]
-        return returnChange(Number((cashPaid - power[cid[i][0]]).toFixed(2)));
+    for (let i = cid_test.length - 1; i >= 0; i--) {
+      if (power[cid_test[i][0]] < remainder && cid_test[i][1] > 0) {
+        cid_test[i][1] = Number((cid_test[i][1] - power[cid_test[i][0]]).toFixed(2));
+        amountPaid[cid_test[i][0]] += power[cid_test[i][0]]
+        return returnChange(Number((cashPaid - power[cid_test[i][0]]).toFixed(2)));
       }
     }
-
+    
     result.stat =  "Insufficient_funds"
+    result.amountPaid={'PENNY':0, 'NICKEL':0,'DIME':0, 'QUARTER':0, 'ONE':0,  "FIVE":0, 'TEN':0,'TWENTY':0,"ONE HUNDRED":0 }
+    
     return result;
   };
 
