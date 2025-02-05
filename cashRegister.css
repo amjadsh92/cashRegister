@@ -43,6 +43,7 @@
     margin-top:10px;
     font-size:18px;
     padding:5px;
+    text-align:center;
   }
 
   label{
@@ -127,7 +128,6 @@
 
 .list-of-notes{
     width:180px;
-    height:240px;
     background-color: white;
     margin-right:30px;
     margin-top:20px;
@@ -201,3 +201,4 @@
     margin-top:10px;;
     font-size:18px;
 }
+
