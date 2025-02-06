@@ -23,6 +23,7 @@ const power = {
   "ONE HUNDRED": 100,
 };
 
+
 const changeStatus = (cashPaid) => {
   let cid_test = cid.map((item) => [...item]);
   let amountPaid = {
@@ -39,6 +40,7 @@ const changeStatus = (cashPaid) => {
   let stat = "";
   let result = { stat, amountPaid };
 
+
   const returnChange = (cashPaid) => {
     let remainder = Number((cashPaid - price).toFixed(2));
 
@@ -46,7 +48,13 @@ const changeStatus = (cashPaid) => {
       if (remainder % power[cash[0]] === 0 && cash[1] >= remainder) {
         cash[1] = Number((cash[1] - remainder).toFixed(2));
         amountPaid[cash[0]] += Number(remainder.toFixed(2));
-        result.stat = "OPEN";
+        if(cid_test.every((cash)=> cash[1] === 0)){
+            result.stat="CLOSED"
+        }
+        else{
+            result.stat = "OPEN";
+        }
+       
         cid = [...cid_test];
 
         return result;
